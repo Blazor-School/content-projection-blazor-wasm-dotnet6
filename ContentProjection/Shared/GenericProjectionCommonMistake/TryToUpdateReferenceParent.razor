@@ -1,0 +1,17 @@
+﻿@using ContentProjection.Models
+
+<div class="border border-3 border-primary p-3">
+    <h3>GenericProjectionParent</h3>
+    <span>Data: @InputFromParent.Data</span>
+    <TryToUpdateReferenceChild InputData="InputFromParent" Context="OutputFromChild">
+        <span>Data: @OutputFromChild.Data</span>
+    </TryToUpdateReferenceChild>
+    <button class="btn btn-primary mt-3" type="button" @onclick="StateHasChanged">Update UI</button>
+</div>
+
+@code {
+    public ExampleClass InputFromParent { get; set; } = new()
+    {
+        Data = "Data from parent"
+    };
+}

@@ -1,0 +1,16 @@
+﻿@using ContentProjection.Models
+
+<div class="border border-3 border-primary p-3">
+    <h3>GenericProjectionDetectChangesParent</h3>
+    <span>Data: @InputFromParent.Data</span>
+    <GenericProjectionDetectChangesChild InputData="InputFromParent" InputDataChanged="StateHasChanged" Context="OutputFromChild">
+        <span>Data: @OutputFromChild.Data</span>
+    </GenericProjectionDetectChangesChild>
+</div>
+
+@code {
+    public ExampleClass InputFromParent { get; set; } = new()
+    {
+        Data = "Data from parent"
+    };
+}

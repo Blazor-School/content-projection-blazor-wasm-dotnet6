@@ -1,0 +1,11 @@
+﻿<div class="border border-success border-3 p-3">
+    <h3>SingleSlotChild</h3>
+    <div class="border border-3 border-warning p-3">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

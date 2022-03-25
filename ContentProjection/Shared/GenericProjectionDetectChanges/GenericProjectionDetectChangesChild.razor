@@ -1,0 +1,26 @@
+﻿@using ContentProjection.Models
+
+<div class="border border-success border-3 p-3">
+    <h3>GenericProjectionDetectChangesChild</h3>
+    <div class="border border-3 border-warning p-3">
+        @ChildContent?.Invoke(InputData)
+    </div>
+    <button class="btn btn-success mt-3" type="button" @onclick="AlternateData">Update Data</button>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment<ExampleClass>? ChildContent { get; set; }
+
+    [Parameter]
+    public ExampleClass InputData { get; set; } = new();
+
+    [Parameter]
+    public EventCallback InputDataChanged { get; set; } = new();
+
+    public void AlternateData()
+    {
+        InputData.Data = "Updated from child";
+        InputDataChanged.InvokeAsync();
+    }
+}

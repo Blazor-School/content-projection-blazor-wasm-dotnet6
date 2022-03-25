@@ -1,0 +1,30 @@
+﻿@using ContentProjection.Models
+
+<div class="border border-success border-3 p-3">
+    <h3>GenericProjectionChild</h3>
+    <div class="border border-3 border-warning p-3">
+        @ChildContent?.Invoke(InputData)
+    </div>
+    <button class="btn btn-outline-success mt-3" type="button" @onclick="Correct">Correct</button>
+    <button class="btn btn-outline-danger mt-3" type="button" @onclick="Mistake">Mistake</button>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment<ExampleClass>? ChildContent { get; set; }
+
+    [Parameter]
+    public ExampleClass InputData { get; set; } = new();
+
+    public void Correct()
+    {
+        InputData.Data = "Value updated.";
+    }
+    public void Mistake()
+    {
+        InputData = new()
+        {
+            Data = "Reference updated."
+        };
+    }
+}
